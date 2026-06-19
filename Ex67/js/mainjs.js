@@ -9,9 +9,28 @@ function load_students_from_xml(dataset, student_infor)
             var parser = new DOMParser();
             var xmlDoc = parser.parseFromString(xhr.responseText, "text/xml");
             render_xml2html(xmlDoc, student_infor);
+            attach_sort_events(student_infor.parentElement);
         }
     };
     xhr.send();
+}
+
+function attach_sort_events(table)
+{
+    if (!table || !table.tBodies[0])
+    {
+        return;
+    }
+
+    var headers = table.getElementsByTagName("th");
+    for (var i = 0; i < headers.length; i++)
+    {
+        headers[i].style.cursor = "pointer";
+        headers[i].onclick = function ()
+        {
+            sortTable(table, this.cellIndex);
+        };
+    }
 }
 
 function render_xml2html(xmlDoc, student_infor)
@@ -49,3 +68,77 @@ function render_xml2html(xmlDoc, student_infor)
     }
 }
 
+function sortTable(table, colIndex)
+{
+    var tbody = table.tBodies[0];
+    var rows = [];
+
+    for (var i = 0; i < tbody.rows.length; i++)
+    {
+        rows.push(tbody.rows[i]);
+    }
+
+    var direction = "asc";
+    if (table.dataset.sortCol == colIndex && table.dataset.sortDir == "asc")
+    {
+        direction = "desc";
+    }
+
+    rows.sort(function (a, b)
+    {
+        var aValue = getSortValue(a.cells[colIndex]);
+        var bValue = getSortValue(b.cells[colIndex]);
+
+        if (aValue > bValue)
+        {
+            if (direction == "asc")
+            {
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        if (aValue < bValue)
+        {
+            if (direction == "asc")
+            {
+                return -1;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+
+        return 0;
+    });
+
+    for (var i = 0; i < rows.length; i++)
+    {
+        tbody.appendChild(rows[i]);
+    }
+
+    table.dataset.sortCol = colIndex;
+    table.dataset.sortDir = direction;
+}
+
+function getSortValue(cell)
+{
+    var value = cell.textContent.trim();
+    var numberValue = Number(value);
+    if (!isNaN(numberValue) && value != "")
+    {
+        return numberValue;
+    }
+
+    var dateValue = Date.parse(value.replace(/\//g, "-"));
+    if (!isNaN(dateValue))
+    {
+        return dateValue;
+    }
+
+    return value.toLowerCase();
+}
