@@ -4,7 +4,6 @@ function loadCDCatalog(data_path, cdTableBody) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var xmlDoc = xhr.responseXML;
-
             if (xmlDoc && xmlDoc.documentElement) {
                 hienThiDuLieu(xmlDoc, cdTableBody);
             } else {
@@ -18,37 +17,33 @@ function loadCDCatalog(data_path, cdTableBody) {
 
 function hienThiDuLieu(xmlDoc, cdTableBody) {
     var bang = document.getElementById("cdTable");
-
-    // Lấy danh sách các phần tử <CD> từ XML DOM
     var danhSachCD = xmlDoc.documentElement.getElementsByTagName("CD");
-
-    // Xóa dữ liệu cũ
     cdTableBody.innerHTML = "";
 
-    // Duyệt từng CD và tạo hàng bằng DOM
     for (var i = 0; i < danhSachCD.length; i++) {
         var cd = danhSachCD[i];
         var hangMoi = document.createElement("tr");
 
-        var fields = [
-            "ARTIST",
-            "TITLE",
-            "COUNTRY",
-            "COMPANY",
-            "PRICE",
-            "YEAR"
-        ];
+        var tdArtist = document.createElement("td");
+        var tdTitle = document.createElement("td");
+        var tdCountry = document.createElement("td");
+        var tdCompany = document.createElement("td");
+        var tdPrice = document.createElement("td");
+        var tdYear = document.createElement("td");
 
-        for (var j = 0; j < fields.length; j++) {
-            var td = document.createElement("td");
-            td.textContent = layGiaTri(cd, fields[j]);
+        tdArtist.textContent = layGiaTri(cd, "ARTIST");
+        tdTitle.textContent = layGiaTri(cd, "TITLE");
+        tdCountry.textContent = layGiaTri(cd, "COUNTRY");
+        tdCompany.textContent = layGiaTri(cd, "COMPANY");
+        tdPrice.textContent = "$" + layGiaTri(cd, "PRICE");
+        tdYear.textContent = layGiaTri(cd, "YEAR");
 
-            if (fields[j] === "PRICE") {
-                td.textContent = "$" + td.textContent;
-            }
-
-            hangMoi.appendChild(td);
-        }
+        hangMoi.appendChild(tdArtist);
+        hangMoi.appendChild(tdTitle);
+        hangMoi.appendChild(tdCountry);
+        hangMoi.appendChild(tdCompany);
+        hangMoi.appendChild(tdPrice);
+        hangMoi.appendChild(tdYear);
 
         cdTableBody.appendChild(hangMoi);
     }
