@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url("css/maincss.css");
+    </style>
+    <script src = "js/mainjs.js"></script>
+</head>
+<body>
+    <table>
+        <caption>Lists of Students</caption>
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Birthday</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+        <tbody id = "student_infor">
+
+        </tbody>
+    </table>
+    <script>
+        student_infor = document.getElementById("student_infor")
+        dataset = "datasets/students.xml"
+        load_students_from_xml(dataset, student_infor)
+    </script>
+</body>
+</html>

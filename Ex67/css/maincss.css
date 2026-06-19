@@ -1,0 +1,20 @@
+table, tr, th, td, caption
+{
+    border: 1px;
+    border-style: solid;
+}
+
+tbody tr:hover
+{
+    background-color: yellow;
+}
+
+caption
+{
+    background-color: rgb(223, 223, 53);
+}
+
+tr th 
+{
+    background-color: rgb(83, 180, 83);
+}
