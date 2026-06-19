@@ -1,0 +1,27 @@
+/* CD Catalog - style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+button {
+    padding: 6px 14px;
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+    display: none;
+}
+
+th, td {
+    border: 1px solid #999;
+    padding: 6px 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #ddd;
+}
