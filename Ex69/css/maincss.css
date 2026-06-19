@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+select {
+    padding: 4px 8px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+    display: none;
+}
+
+th, td {
+    border: 1px solid #999;
+    padding: 6px 14px;
+    text-align: left;
+}
+
+thead tr:first-child th {
+    background-color: #ffffff;
+    font-weight: normal;
+}
+
+thead tr:last-child th {
+    background-color: #4a7c3f;
+    color: #ffffff;
+}
