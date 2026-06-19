@@ -1,34 +1,18 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CD Catalog - AJAX</title>
-
-    <!-- Liên kết file CSS định dạng trang -->
-    <link rel="stylesheet" href="css/main.css" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Dõument</title>
+    <link rel="stylesheet" href="css/main.css"/>
 </head>
 <body>
 
 <div class="container">
     <h1>My CD Collection</h1>
-
-    <!--
-        Nút bấm: gọi loadCDCatalog() với 2 tham số:
-          - "dataset/cd_catalog.xml" : đường dẫn đến file dữ liệu XML
-          - document.getElementById("cdTableBody") : phần tử <tbody> sẽ nhận dữ liệu
-    -->
-    <button class="btn-get"
-            onclick="loadCDCatalog('dataset/cd_catalog.xml', document.getElementById('cdTableBody'))">
+    <button class="btn-get" onclick="loadCDCatalog('dataset/cd_catalog.xml', document.getElementById('cdTableBody'))">
         Get my CD collection
     </button>
-
-
-    <!--
-        Bảng hiển thị kết quả.
-        Ban đầu bị ẩn (display: none trong CSS).
-        Sẽ hiện ra sau khi AJAX tải xong dữ liệu.
-    -->
     <table id="cdTable">
         <thead>
             <tr>
@@ -41,13 +25,10 @@
             </tr>
         </thead>
         <tbody id="cdTableBody">
-            <!-- Các hàng dữ liệu sẽ được chèn vào đây bằng JavaScript -->
+
         </tbody>
     </table>
 </div>
-
-<!-- Liên kết file JavaScript chứa các hàm xử lý AJAX -->
 <script src="js/main.js"></script>
-
 </body>
 </html>
